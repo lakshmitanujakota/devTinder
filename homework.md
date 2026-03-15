@@ -22,3 +22,8 @@
  - Use of repos in routes /a/ , /.*fly$/
  - Reading the query params in the routes
  - Reading the dynamic routes
+
+ - Multiple route handlers - play with the code
+ - next()
+ - next function and errors along with res.send()
+ - app.send("/route", rH, [rh2, rH3], rH4, rH5);
