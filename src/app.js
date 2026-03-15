@@ -1,19 +1,23 @@
-const express = require('express');
+const express=require("express");
 
 const app=express();
 
-app.use('/hello',(req,res)=>{
-    res.send("hello there....")
+app.get("/test",(req,res)=>{
+    res.send("Connected to test server.")
 });
 
-app.use('/text',(req, res)=>{
-    res.send("Response from server...")
+app.post("/test",(req,res)=>{
+    res.send("Connected to test1..")
 });
 
- app.use((req,res)=>{
-    res.send("hello from dashboard..")
-});  
+app.delete("/test",(req,res)=>{
+    res.send("Connected to test1..")
+});
 
-app.listen(3000, ()=>{
-    console.log("Server connection created....")
+app.put("/test",(req,res)=>{
+    res.send("Connected to test1..")
+});
+
+app.listen(7777, ()=>{
+    console.log("Server is cconnected.")
 });
