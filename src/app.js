@@ -7,7 +7,6 @@ app.use(express.json());
 
 app.get("/signup", async (req, res)=>{
     const user = new User(req.body);
-
     try{
         await user.save();
         res.send("User Added successfully.");
@@ -15,6 +14,7 @@ app.get("/signup", async (req, res)=>{
         res.status(400).send("Error saving the user:"+err.message);
     }
 });
+
 
 
 connectDB().then(() => {
