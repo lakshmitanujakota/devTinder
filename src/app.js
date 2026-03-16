@@ -2,28 +2,21 @@ const express = require("express");
 
 const app = express();
 
-app.use("/use", (req, res, next) => {
-    console.log("response sending.");
-    next();
-    //res.send("Route  Server 1")
+const {adminAuth, userAuth}= ("./middlewares")
 
-},
-    (req, res, next) => {
-        console.log("response sending.");
-        //res.send("Route  Server 2")
-        next();
-    }, (req, res, next) => {
-        console.log("response sending.");
-        //res.send("Route  Server 3")
-        next();
-    }, (req, res, next) => {
-        console.log("response sending.");
-       // res.send("Route  Server 4")
-        next();
-    }, (req, res, next) => {
-        console.log("response sending.");
-        res.send("Route  Server 5")
-    })
+app.use("/admin", adminAuth)
+
+app.get("/user", userAuth, (req, res) => {
+    res.send("User Data Sent.")
+})
+
+app.get("/admin/getAllData", (req, res) => {
+    res.send("All Data Sent.")
+})
+
+app.get("/admin/deleteAllData", (req, res) => {
+    res.send("All Data Sent.")
+})
 
 app.listen(7777, () => {
     console.log("Server is cconnected.")
