@@ -17,12 +17,15 @@ app.post("/signup", async (req, res) => {
 
 
 app.get("/user", async (req, res) => {
+    try{
     const emailId = req.body.emailId;
     const user = await User.findOne({ emailId: emailId });
     if (!user) {
         res.status(400).send("User not found with above email id");
     } else {
         res.send(user);
+    }}catch (err) {
+        res.status(400).send("Something went wrong..")
     }
 });
 
