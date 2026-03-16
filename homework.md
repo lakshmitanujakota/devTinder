@@ -39,4 +39,9 @@
  - Connect your application to the database "Connection-url"/dev-Tinder
  - call the connectDB function and connect to the database beffore starting application on 7777
  - Create a userSchema & userModel 
- 
+ - Push some documents using API calls from postman
+ - Error Handling using try, catch
+
+ - Difference between JSON data & Javascript object
+ - Add the express.json() middleware to your app
+ - Make your signup API dynamic data from the end user
