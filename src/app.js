@@ -1,22 +1,32 @@
 const express = require("express");
-
+const connectDB = require("./config/database");
 const app = express();
+const User = require("./models/user");
 
-const {adminAuth, userAuth}= ("./middlewares")
+app.get("/signup", async (req, res)=>{
+    const user = new User({
+        firstName : "Tanuja",
+        lastName : "kota",
+        emailId: "anuja@gmail.com",
+        password: "78uk51f",
+        
+    });
 
-app.use("/", (err, req, res,next)=>{res.status(401).send("Something is wrong..")})
-
-app.get("/user",(req,res)=>{
-    //try{ 
-    throw new Error("Something went wrong");
-    res.send("Route handler");
-   //} catch(err){
-    //res.status(401).send("Something is wrong..")
-   //}
+    try{
+        await user.save();
+        res.send("User Added successfully.");
+    }catch(err){
+        res.status(400).send("Error saving the user:"+err.message);
+    }
 });
 
-app.use("/", (err, req, res,next)=>{res.status(401).send("Something is wrong..")})
 
-app.listen(7777, () => {
-    console.log("Server is cconnected.")
+connectDB().then(() => {
+    console.log("Connetec to database");
+    app.listen(7777, () => {
+        console.log("Server is cconnected.")
+    });
+}).catch(err => {
+    console.err("Database connection not established");
 });
+

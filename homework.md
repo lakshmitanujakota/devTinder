@@ -33,3 +33,10 @@
  - Write a dummy auth middleware for admin
  - Write a dummy auth middleware for all user routes, expect/user/ login
  - Error handling using app.use("/", (err, req, res, next)=>{});
+ 
+ - Create a free cluster on MongoDB official website (Mongo Atlas)
+ - Install mongoose Library
+ - Connect your application to the database "Connection-url"/dev-Tinder
+ - call the connectDB function and connect to the database beffore starting application on 7777
+ - Create a userSchema & userModel 
+ 
