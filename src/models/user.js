@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const UserSchema = mongoose.Schema({
     firstName: {
@@ -18,12 +19,22 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true
+        trim: true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Please a Enter a valid Email ID.")
+            }
+        }
     },
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate(value){
+            if(!validator.isStrongPassword(value)){
+                throw new Error("Password is not Strong.")
+            }
+        }
     },
     age: {
         type: Number,
@@ -51,7 +62,12 @@ const UserSchema = mongoose.Schema({
     PhotoURL: {
         type: String,
         trim: true,
-        default: "https://www.ommel.fi/content/uploads/2019/03/dummy-profile-image-female.jpg"
+        default: "https://www.ommel.fi/content/uploads/2019/03/dummy-profile-image-female.jpg",
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error("Enter valid URL.")
+            }
+        }
     }
 }, { timestamps: true });
 

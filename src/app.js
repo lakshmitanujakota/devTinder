@@ -56,17 +56,30 @@ app.delete("/user", async (req, res) => {
 
 })
 
-app.patch("/user", async (req, res) => {
-    const userId = req.body.userId;
+app.patch("/user/:userId", async (req, res) => {
+    const userId = req.params?.userId;
     const data = req.body;
+    
+
     try {
-        const user = await User.findByIdAndUpdate({_id : userId}, data, { 
-            returnDocument: "after", 
-            runValidators: true, context: "query" });
+
+        const ALLOWED_Fields = ["gender", "age", "skills", "PhotoURL", "About", "password"];
+       const isUpdatedAllowed = Object.keys(data).every((key) => ALLOWED_Fields.includes(key));
+       if(!isUpdatedAllowed){
+        throw new Error("Some of the Allowed Fields are not allowed to Update.")
+       }
+       if(data?.skills.length>10){
+        throw new Error("Max Allowed Skills are 10.")
+       }
+
+        const user = await User.findByIdAndUpdate({ _id: userId }, data, {
+            returnDocument: "after",
+            runValidators: true, context: "query"
+        });
         console.log(user);
         res.send("User data updated");
     } catch (err) {
-        res.status(400).send("Update Failed " +err.message);
+        res.status(400).send("Update Failed " + err.message);
     }
 })
 

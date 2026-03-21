@@ -53,3 +53,13 @@
  - Difference between PATCH and PUT
  - API _ Update a user
  - Explore the Mongoose Documentation for Model API
+
+ - Explore schematype options from the documentation
+ - Add Required, unique, minLength, maxLength, trim, min , max ..etc
+ - Add default
+ - Create a custom validation function for gender
+ - Improve the db schema -PUT all appropriate validations on eaach field in Schema
+ - Add API Level validations on patch request & sign up request
+ - Add API Validations for each field
+ - Install Validator
+ - Explore Validator documentation & play with validator functions
