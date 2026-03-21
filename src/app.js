@@ -63,7 +63,7 @@ app.patch("/user/:userId", async (req, res) => {
 
     try {
 
-        const ALLOWED_Fields = ["gender", "age", "skills", "PhotoURL", "About", "password"];
+       const ALLOWED_Fields = ["gender", "age", "skills", "PhotoURL", "About", "password"];
        const isUpdatedAllowed = Object.keys(data).every((key) => ALLOWED_Fields.includes(key));
        if(!isUpdatedAllowed){
         throw new Error("Some of the Allowed Fields are not allowed to Update.")

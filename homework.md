@@ -62,4 +62,5 @@
  - Add API Level validations on patch request & sign up request
  - Add API Validations for each field
  - Install Validator
- - Explore Validator documentation & play with validator functions
+ - Explore Validator documentation & play with validator functions 
+ 
