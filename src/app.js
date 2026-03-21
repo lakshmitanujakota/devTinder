@@ -17,14 +17,15 @@ app.post("/signup", async (req, res) => {
 
 
 app.get("/user", async (req, res) => {
-    try{
-    const emailId = req.body.emailId;
-    const user = await User.findOne({ emailId: emailId });
-    if (!user) {
-        res.status(400).send("User not found with above email id");
-    } else {
-        res.send(user);
-    }}catch (err) {
+    try {
+        const emailId = req.body.emailId;
+        const user = await User.findOne({ emailId: emailId });
+        if (!user) {
+            res.status(400).send("User not found with above email id");
+        } else {
+            res.send(user);
+        }
+    } catch (err) {
         res.status(400).send("Something went wrong..")
     }
 });
@@ -59,18 +60,20 @@ app.patch("/user", async (req, res) => {
     const userId = req.body.userId;
     const data = req.body;
     try {
-        const user = await User.findByIdAndUpdate(userId, data, {returnDocument: "after"});
+        const user = await User.findByIdAndUpdate({_id : userId}, data, { 
+            returnDocument: "after", 
+            runValidators: true, context: "query" });
         console.log(user);
         res.send("User data updated");
     } catch (err) {
-        res.status(400).send("Something went wrong.");
+        res.status(400).send("Update Failed " +err.message);
     }
 })
 
 connectDB().then(() => {
     console.log("Conneted to database");
     app.listen(3000, () => {
-        console.log("Server is cconnected.")
+        console.log("Server is connected.")
     });
 }).catch((err) => {
     console.error("Database connection not established");
