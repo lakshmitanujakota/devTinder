@@ -4,8 +4,11 @@ const app = express();
 const User = require("./models/user");
 const { validateSignUpData } = require("./utils/validate");
 const bcrypt = require("bcrypt");
+const cookieparser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 app.use(express.json());
+app.use(cookieparser());
 
 app.post("/signup", async (req, res) => {
     try {
@@ -28,12 +31,15 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { emailId, password } = req.body;
-        const user = await User.findOne({ emailId : emailId });
+        const user = await User.findOne({ emailId: emailId });
         if (!user) {
             throw new Error("Invalid Credentials");
         };
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (isPasswordValid) {
+            //Create JWT 
+            const token = await jwt.sign({ _id: user._id }, "DEV@TinderT#123");
+            res.cookie("token", token);
             res.send("login Successful");
         }
         else {
@@ -44,6 +50,23 @@ app.post("/login", async (req, res) => {
     }
 
 })
+
+app.post("/profile", async (req, res) => {
+    try {
+        const cookie = req.cookies;
+        const { token } = cookie;
+        const decodedMessage = await jwt.verify(token, "DEV@TinderT#123");
+        const {_id}=decodedMessage;
+        const user=await User.findById({_id})
+        if (!decodedMessage) {
+            throw new Error("Invalid Token");
+        }
+        res.send(user);
+    } catch (err) {
+        res.status(400).send("Error " + err.message);
+    }
+
+});
 
 app.get("/user", async (req, res) => {
     try {
