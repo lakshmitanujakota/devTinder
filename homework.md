@@ -10,6 +10,7 @@
  - What is the use of "-g" while npm instaall
  - Difference between caret and tilde ( ^ & ~ )
 
+
  - Initialize git
  - .gitignore
  - create a remote repo on github
@@ -23,6 +24,7 @@
  - Reading the query params in the routes
  - Reading the dynamic routes
 
+
  - Multiple route handlers - play with the code
  - next()
  - next function and errors along with res.send()
@@ -34,6 +36,7 @@
  - Write a dummy auth middleware for all user routes, expect/user/ login
  - Error handling using app.use("/", (err, req, res, next)=>{});
  
+
  - Create a free cluster on MongoDB official website (Mongo Atlas)
  - Install mongoose Library
  - Connect your application to the database "Connection-url"/dev-Tinder
@@ -41,6 +44,7 @@
  - Create a userSchema & userModel 
  - Push some documents using API calls from postman
  - Error Handling using try, catch
+
 
  - Difference between JSON data & Javascript object
  - Add the express.json() middleware to your app
@@ -54,6 +58,7 @@
  - API _ Update a user
  - Explore the Mongoose Documentation for Model API
 
+
  - Explore schematype options from the documentation
  - Add Required, unique, minLength, maxLength, trim, min , max ..etc
  - Add default
@@ -64,11 +69,13 @@
  - Install Validator
  - Explore Validator documentation & play with validator functions 
 
+
  - Validate data in Signup API
  - Install bcrypt package
  - Create passwordHash using bcrypt.hash & save the user and encrypted password
  - Create Login API
  - Compare passwords and throw error if email or password is invalid
+
 
  - insall cookie-parser
  - send a dummy cookie to user
@@ -81,6 +88,7 @@
  - Set he expiry of JWT token and cookies to 7 days
  - Create userSchema method to getJWT()
  - Create UserSchema method to comparepassword(passwordByInputUser)
+
 
  - Explore Tinder APIs
  - Create a list of all APIs that we need for our app
