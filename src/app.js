@@ -1,24 +1,19 @@
 const express = require("express");
 const { connectDB } = require("./config/database");
 const app = express();
-const bcrypt = require("bcrypt");
 const cookieparser = require("cookie-parser");
-const { userAuth } = require("./middlewares/auth");
 
 app.use(express.json());
 app.use(cookieparser());
 
 const authRouter=require("./routers/auth");
 const profileRouter=require("./routers/profile");
+const requestRouter=require("./routers/request");
 
 app.use("/",authRouter);
 app.use("/",profileRouter);
+app.use("/",requestRouter);
 
-app.post("/getConnectionDetails", userAuth, async (req, res) => {
-
-    console.log("server");
-    res.send("Connected to Connection request server.");
-})
 
 
 connectDB().then(() => {
