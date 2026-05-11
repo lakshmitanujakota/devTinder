@@ -112,3 +112,9 @@
  - What is the advnatages and disadvantages of creating indexs?
  - Read this article about compond indexes
  - Always think about corner cases
+
+  - Write code with proper validations for POST /request/review/:status/:requestid
+  - Thought process - POST vs GET
+  - Read about ref and populate
+  - Create api /user/requests/received
+  - Create api /user/connections

@@ -3,6 +3,7 @@ const requestRouter = express.Router("");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
+const { ConnectionStates } = require("mongoose");
 
 
 requestRouter.post("/request/:status/:toUserId", userAuth, async (req, res) => {
@@ -46,6 +47,36 @@ requestRouter.post("/request/:status/:toUserId", userAuth, async (req, res) => {
         res.json({ message: `${req.user.firstName} is ${status} in ${toUser.firstName}`, data })
     } catch (err) {
         res.status(400).send("Error" + err.message);
+    }
+});
+
+requestRouter.post("/request/review/:status/:requestid",userAuth, async(req,res)=>{
+    try{
+        const loggedInUser=req.user;
+        const status=req.params.status;
+        const requestid=req.params.requestid;
+
+        const isAllowedStatus=["accepted","ignored"];
+        if(!isAllowedStatus.includes(status)){
+            res.status(400).json({message: "Incorrect status."});
+        };
+
+        const connectionRequest = await ConnectionRequest.findOne({
+            _id : requestid,
+            toUserId: loggedInUser._id,
+            status: "interested"
+        });
+        if(!connectionRequest){
+            res.status(400).send("Connection Request Not Found");
+        };
+        
+        connectionRequest.status=status;
+
+        const data= await connectionRequest.save();
+        res.json({message: "Connection Request accepted",data})
+
+    }catch(err){
+        res.status(400).send("Error"+err.message);
     }
 })
 
