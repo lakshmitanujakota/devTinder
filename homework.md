@@ -100,3 +100,15 @@
  - Create PATCH/profile/edit
  - Create PATCH/profile/password
  - validate data in PATCH APIs
+
+ - Create Connection Request Schema
+ - Send Connection Request API
+ - Check Proper Validation of Data
+ - Think about ALL corner cases
+ - $or query $and query in mongoose
+ - schema.pre("save") function https://mongoosejs.com/docs/middleware.html#pre
+ - Read more about indexes in MongoDB
+ - Why do we need index in DB?
+ - What is the advnatages and disadvantages of creating indexs?
+ - Read this article about compond indexes
+ - Always think about corner cases

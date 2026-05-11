@@ -47,11 +47,16 @@ const UserSchema = mongoose.Schema({
     gender: {
         type: String,
         trim: true,
+        enum:{
+            values:["male","female","Other"],
+            message: `{VALUE} Please enter a valid gender type.`
+        }
+        /*
         validate(value) {
             if (!["male", "female", "Other"].includes(value)) {
                 throw new Error("Please enter a valid gender type.")
             }
-        }
+        }*/
     },
     About: {
         type: String,
