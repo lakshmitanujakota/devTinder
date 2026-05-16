@@ -38,7 +38,7 @@ authRouter.post("/login", async (req, res) => {
             //Create JWT 
             const token = await user.getJWT(user);
             res.cookie("token", token, { expires: new Date(Date.now() + 8 * 360000) });
-            res.send("login Successful");
+            res.send(user);
         }
         else {
             throw new Error("Invalid Credentials");

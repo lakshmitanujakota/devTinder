@@ -123,7 +123,10 @@
   - Read about $nin $and $ne
   - Read about select , populate
   - page , skip, limit
-
+  
+  - Installed cors
+  - Whitelisted the frontend url 
+  
   /feed?page=1&limit=10 skip=0 limit=10
   /feed?page=2&limit=10 skip=10 limit=10
   /feed?page=3&limit=10 skip=20 limit=10
