@@ -58,7 +58,7 @@ const UserSchema = mongoose.Schema({
             }
         }*/
     },
-    About: {
+    about: {
         type: String,
         default: "Enter Something about yourself."
     },
@@ -67,7 +67,7 @@ const UserSchema = mongoose.Schema({
         type: [String],
         trim: true
     },
-    PhotoURL: {
+    photoURL: {
         type: String,
         trim: true,
         default: "https://www.ommel.fi/content/uploads/2019/03/dummy-profile-image-female.jpg",
