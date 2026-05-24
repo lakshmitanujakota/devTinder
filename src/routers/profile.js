@@ -5,7 +5,7 @@ const { validateAllowedFields } = require("../utils/validate");
 const bcrypt = require("bcrypt");
 
 
-profileRouter.post("/profile/view", userAuth, async (req, res) => {
+profileRouter.get("/profile/view", userAuth, async (req, res) => {
     try {
         const user = req.user;
         res.json(user)
